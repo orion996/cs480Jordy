@@ -1,4 +1,4 @@
-# PA1: Spinning Cube
+# PA2: Keyboard Inputs
 
 # Dependencies, Building, and Running
 
@@ -57,4 +57,4 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 
 ## Keyboard  controls
 R - toggle rotation along y-axis
-T - toggle orbit around center (translation)
+```T - toggle orbit around center (translation)
