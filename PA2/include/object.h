@@ -9,7 +9,7 @@ class Object
   public:
     Object();
     ~Object();
-    void Update(unsigned int dt);
+    void Update(unsigned int dt, char cmd);
     void Render();
 
     glm::mat4 GetModel();
@@ -21,7 +21,13 @@ class Object
     GLuint VB;
     GLuint IB;
 
-    float angle;
+    float rotAngle;
+    float orbitAngle;
+
+    bool oReversed = false;
+    bool rReversed = false;
+    bool isOrbiting = true;
+    bool isRotating = true;
 };
 
 #endif /* OBJECT_H */

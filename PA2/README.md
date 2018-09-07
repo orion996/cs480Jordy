@@ -55,7 +55,11 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 /usr/NX/scripts/vgl/vglrun ./Tutorial
 ```
 
-## Keyboard  controls
+## Keyboard Controls
 ```bash
 R - toggle rotation along y-axis
-T - toggle orbit around center (translation)
+O - toggle orbit around center 
+A - change orbit direction (can also be done with Left Mouse Button)
+B - change rotation direction (can also be done with Right Mouse Button)
+Esc - Exit Program
+```

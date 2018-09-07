@@ -53,6 +53,7 @@ bool Engine::Initialize()
 void Engine::Run()
 {
   m_running = true;
+  char cmd = 'z';
 
   while(m_running)
   {
@@ -62,11 +63,52 @@ void Engine::Run()
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
     {
-      Keyboard();
+      //Keyboard();
+      if(m_event.type == SDL_QUIT)
+      {
+        m_running = false;
+      }
+      else if(m_event.type == SDL_MOUSEBUTTONDOWN)
+      {
+	if(m_event.button.button == SDL_BUTTON_LEFT)
+	{
+		cmd = 'a';
+	}
+	else if(m_event.button.button == SDL_BUTTON_RIGHT)
+	{
+		cmd = 'b';
+	}
+	
+      }
+      else if (m_event.type == SDL_KEYDOWN)
+      {
+       // handle key down events here
+       if (m_event.key.keysym.sym == SDLK_ESCAPE)//exit
+       {
+         m_running = false;
+       }
+       if(m_event.key.keysym.sym == SDLK_r)//toggle rotation
+	{
+		cmd  = 'r';
+	}
+	if(m_event.key.keysym.sym == SDLK_o)//toggle orbit
+	{
+		cmd = 'o';
+	}
+	if(m_event.key.keysym.sym == SDLK_a)//toggle reverse orbit
+	{
+		cmd = 'a';
+	}
+	if(m_event.key.keysym.sym == SDLK_b)//toggle reverse rotation
+	{
+		cmd = 'b';
+	}
+      }
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT);
+    m_graphics->Update(m_DT, cmd);
+    cmd = 'x';
     m_graphics->Render();
 
     // Swap to the Window
