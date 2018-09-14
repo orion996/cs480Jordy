@@ -15,7 +15,7 @@ class Graphics
     Graphics();
     ~Graphics();
     bool Initialize(int width, int height);
-    void Update(unsigned int dt, char cmd);
+    void Update(unsigned int dt, char cmd, bool newIn);
     void Render();
 
   private:
@@ -28,7 +28,7 @@ class Graphics
     GLint m_viewMatrix;
     GLint m_modelMatrix;
 
-    Object *m_cube;
+    Object *planet;
 };
 
 #endif /* GRAPHICS_H */

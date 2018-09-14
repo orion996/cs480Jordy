@@ -54,6 +54,7 @@ void Engine::Run()
 {
   m_running = true;
   char cmd = 'z';
+  bool newIn = false;
 
   while(m_running)
   {
@@ -73,10 +74,12 @@ void Engine::Run()
 	if(m_event.button.button == SDL_BUTTON_LEFT)
 	{
 		cmd = 'a';
+		newIn = true;
 	}
 	else if(m_event.button.button == SDL_BUTTON_RIGHT)
 	{
 		cmd = 'b';
+		newIn = true;
 	}
 	
       }
@@ -90,25 +93,50 @@ void Engine::Run()
        if(m_event.key.keysym.sym == SDLK_r)//toggle rotation
 	{
 		cmd  = 'r';
+		newIn = true;
 	}
 	if(m_event.key.keysym.sym == SDLK_o)//toggle orbit
 	{
 		cmd = 'o';
+		newIn = true;
 	}
 	if(m_event.key.keysym.sym == SDLK_a)//toggle reverse orbit
 	{
 		cmd = 'a';
+		newIn = true;
 	}
 	if(m_event.key.keysym.sym == SDLK_b)//toggle reverse rotation
 	{
 		cmd = 'b';
+		newIn = true;
+	}
+	if(m_event.key.keysym.sym == SDLK_UP)
+	{
+		cmd = '^';
+		newIn = true;
+	}
+	if(m_event.key.keysym.sym == SDLK_DOWN)
+	{
+		cmd = 'v';
+		newIn = true;
+	}
+	if(m_event.key.keysym.sym == SDLK_RIGHT)
+	{
+		cmd = '>';
+		newIn = true;
+	}
+	if(m_event.key.keysym.sym == SDLK_LEFT)
+	{
+		cmd = '<';
+		newIn = true;
 	}
       }
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT, cmd);
+    m_graphics->Update(m_DT, cmd, newIn);
     cmd = 'x';
+    newIn = false;
     m_graphics->Render();
 
     // Swap to the Window

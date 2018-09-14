@@ -61,5 +61,9 @@ R - toggle rotation along y-axis
 O - toggle orbit around center 
 A - change orbit direction (can also be done with Left Mouse Button)
 B - change rotation direction (can also be done with Right Mouse Button)
+Up Arrow - toggle moon rotation
+Down Arrow - toggle moon orbit
+Right Arrow - change moon orbit direction
+Left Arrow - change moon rotation direction
 Esc - Exit Program
 ```

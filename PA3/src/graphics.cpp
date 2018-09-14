@@ -44,8 +44,9 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Create the object
-  m_cube = new Object();
+  // Create the objects
+  planet = new Object();
+  planet -> moons = new Object();
 
   // Set up the shaders
   m_shader = new Shader();
@@ -107,10 +108,11 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char cmd)
+void Graphics::Update(unsigned int dt, char cmd, bool newIn)
 {
   // Update the object
-  m_cube->Update(dt, cmd);
+  planet->Update(dt, cmd, newIn);
+  planet -> moons -> UpdateMoon(dt, cmd, planet -> GetModel(), newIn);//update moons
 }
 
 void Graphics::Render()
@@ -126,9 +128,13 @@ void Graphics::Render()
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
 
-  // Render the object
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
-  m_cube->Render();
+  // Render the planet
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(planet->GetModel()));
+  planet->Render();
+  
+  // render the moons
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(planet -> moons -> GetModel()));
+  planet -> moons -> Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();

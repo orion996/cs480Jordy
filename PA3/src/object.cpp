@@ -82,19 +82,12 @@ Object::~Object()
 
 
 
-void Object::Update(unsigned int dt, char cmd)
+void Object::Update(unsigned int dt, char cmd, bool newIn)
 {
+
+ int angleDiv = 2000;
   
  model = glm::mat4(1.0f);//render the cube
-
- //reference code
- /*orbitAngle += (dt * M_PI/2000);//set angle for rotation
- rotAngle = orbitAngle * 1.5f;
- model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
- model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
- model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));*/
- 
- //set booleans to determine state
 
  switch(cmd)
  {
@@ -140,15 +133,15 @@ void Object::Update(unsigned int dt, char cmd)
 
  if(isRotating && isOrbiting && !oReversed && !rReversed)//rotating, orbiting, not reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
- 	rotAngle += (dt * M_PI/2000);
+	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle += (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(!isRotating && isOrbiting && !oReversed && !rReversed)//not rotating, orbiting, not reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
+	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
  	rotAngle += 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -157,31 +150,31 @@ void Object::Update(unsigned int dt, char cmd)
  else if(isRotating && !isOrbiting && !oReversed && !rReversed)//rotating,  not orbiting, not reversed
  {
 	orbitAngle += 0;//set angle for rotation
- 	rotAngle += (dt * M_PI/2000) * 1.5f;
+ 	rotAngle += (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(isRotating && isOrbiting && oReversed && !rReversed)//rotating, orbiting, orbit reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
- 	rotAngle += (dt * M_PI/900);
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle += (dt * M_PI/(angleDiv/2));
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
- 	rotAngle -= (dt * M_PI/900);
+	orbitAngle += (dt * M_PI/(angleDiv * 1.5));//set angle for rotation
+ 	rotAngle -= (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(isRotating && isOrbiting && oReversed && rReversed)//rotating, orbiting, both reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle -= (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -196,7 +189,7 @@ void Object::Update(unsigned int dt, char cmd)
  }
  else if(!isRotating && isOrbiting && oReversed && !rReversed)//not rotating, orbiting,  orbit reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
  	rotAngle += 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -205,14 +198,14 @@ void Object::Update(unsigned int dt, char cmd)
  else if(isRotating && !isOrbiting && oReversed && !rReversed)//rotating, not orbiting, orbit reversed
  {
 	orbitAngle -= 0;//set angle for rotation
- 	rotAngle += (dt * M_PI/2000);
+ 	rotAngle += (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(!isRotating && isOrbiting && !oReversed && rReversed)//not rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
+	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
  	rotAngle -= 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -221,14 +214,14 @@ void Object::Update(unsigned int dt, char cmd)
  else if(isRotating && !isOrbiting && !oReversed && rReversed)//rotating, not orbiting, rotation reversed
  {
 	orbitAngle += 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+ 	rotAngle -= (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
  else if(!isRotating && isOrbiting && oReversed && rReversed)//not rotating, orbiting, both reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
  	rotAngle -= 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -237,7 +230,7 @@ void Object::Update(unsigned int dt, char cmd)
  else if(isRotating && !isOrbiting && oReversed && rReversed)//rotating, not orbiting, both reversed
  {
 	orbitAngle -= 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+ 	rotAngle -= (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -245,6 +238,176 @@ void Object::Update(unsigned int dt, char cmd)
 
 
    
+}
+
+void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
+{
+
+ int angleDiv = 1000;
+
+ switch(cmd)
+ {
+	case '^':
+	{
+		if(isRotating)
+			isRotating = false;
+		else
+			isRotating = true;
+		break;
+	}
+	case 'v':
+	{
+		if(isOrbiting)
+			isOrbiting = false;
+		else
+			isOrbiting = true;
+		break;
+	}
+	case '>':
+	{
+		if(oReversed)
+			oReversed = false;
+		else
+			oReversed = true;
+		break;
+	}
+	case '<':
+	{
+		if(rReversed)
+			rReversed = false;
+		else
+			rReversed = true;
+		break;
+	}
+	default:
+	{
+		break;
+	}
+ }
+
+ model = Planet;//set moon model in respect to planet
+ if(isRotating && isOrbiting && !oReversed && !rReversed)//rotating, orbiting, not reversed
+ {
+	orbitAngle += (dt * M_PI/(angleDiv * 2));//set angle for rotation
+ 	rotAngle += (dt * M_PI/(angleDiv));
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(!isRotating && isOrbiting && !oReversed && !rReversed)//not rotating, orbiting, not reversed
+ {
+	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle += 0;
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && !isOrbiting && !oReversed && !rReversed)//rotating,  not orbiting, not reversed
+ {
+	orbitAngle += 0;//set angle for rotation
+ 	rotAngle += (dt * M_PI/angleDiv);
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && isOrbiting && oReversed && !rReversed)//rotating, orbiting, orbit reversed
+ {
+	orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
+ 	rotAngle += (dt * M_PI/(angleDiv/4));
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
+ {
+	orbitAngle += (dt * M_PI/(angleDiv));//set angle for rotation
+ 	rotAngle -= (dt * M_PI/(angleDiv/4));
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && isOrbiting && oReversed && rReversed)//rotating, orbiting, both reversed
+ {
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle -= (dt * M_PI/angleDiv);
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(!isRotating && !isOrbiting)//stopped 
+ {
+	orbitAngle += 0;//set angle for rotation
+ 	rotAngle += 0;
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(!isRotating && isOrbiting && oReversed && !rReversed)//not rotating, orbiting,  orbit reversed
+ {
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle += 0;
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && !isOrbiting && oReversed && !rReversed)//rotating, not orbiting, orbit reversed
+ {
+	orbitAngle -= 0;//set angle for rotation
+ 	rotAngle += (dt * M_PI/angleDiv);
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(!isRotating && isOrbiting && !oReversed && rReversed)//not rotating, orbiting, rotation reversed
+ {
+	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle -= 0;
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && !isOrbiting && !oReversed && rReversed)//rotating, not orbiting, rotation reversed
+ {
+	orbitAngle += 0;//set angle for rotation
+ 	rotAngle -= (dt * M_PI/angleDiv);
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(!isRotating && isOrbiting && oReversed && rReversed)//not rotating, orbiting, both reversed
+ {
+	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ 	rotAngle -= 0;
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+ else if(isRotating && !isOrbiting && oReversed && rReversed)//rotating, not orbiting, both reversed
+ {
+	orbitAngle -= 0;//set angle for rotation
+ 	rotAngle -= (dt * M_PI/angleDiv);
+ 	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
+ 	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
+ 	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
+ }
+
+ 
+
+ 
+
 }
 
 glm::mat4 Object::GetModel()
