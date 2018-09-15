@@ -1,6 +1,12 @@
 #include "object.h"
-#include <SDL2/SDL.h>
 #include <iostream>
+
+bool pOrbRev;
+bool pRotRev;
+bool pRot;
+bool pOrb;
+
+#define DIV 2000
 
 Object::Object()
 {  
@@ -85,7 +91,7 @@ Object::~Object()
 void Object::Update(unsigned int dt, char cmd, bool newIn)
 {
 
- int angleDiv = 2000;
+ int angleDiv = DIV;
   
  model = glm::mat4(1.0f);//render the cube
 
@@ -129,7 +135,10 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
 	}
  }
 	
-
+ pRotRev = rReversed;
+ pOrbRev = oReversed;
+ pOrb = isOrbiting;
+ pRot = isRotating;
 
  if(isRotating && isOrbiting && !oReversed && !rReversed)//rotating, orbiting, not reversed
  {
@@ -165,8 +174,8 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
  }
  else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/(angleDiv * 1.5));//set angle for rotation
- 	rotAngle -= (dt * M_PI/angleDiv);
+	orbitAngle += (dt * M_PI/(angleDiv));//set angle for rotation
+ 	rotAngle -= (dt * M_PI/(angleDiv/2));
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -236,14 +245,14 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
  }
 
-
    
 }
 
 void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
 {
 
- int angleDiv = 1000;
+ int angleDiv = DIV/2;
+
 
  switch(cmd)
  {
@@ -290,6 +299,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  {
 	orbitAngle += (dt * M_PI/(angleDiv * 2));//set angle for rotation
  	rotAngle += (dt * M_PI/(angleDiv));
+
+	if(pRotRev)
+		orbitAngle += (dt * M_PI/(angleDiv));
+
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -298,6 +311,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  else if(!isRotating && isOrbiting && !oReversed && !rReversed)//not rotating, orbiting, not reversed
  {
 	orbitAngle += (dt * M_PI/angleDiv);//set angle for rotation
+      
+        if(pRotRev)
+		orbitAngle += (dt * M_PI/(angleDiv/2));
+
  	rotAngle += 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -308,6 +325,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  {
 	orbitAngle += 0;//set angle for rotation
  	rotAngle += (dt * M_PI/angleDiv);
+ 
+        if(pRotRev)
+		rotAngle += (dt * M_PI/(angleDiv/2));
+  
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -315,8 +336,21 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  }
  else if(isRotating && isOrbiting && oReversed && !rReversed)//rotating, orbiting, orbit reversed
  {
-	orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
- 	rotAngle += (dt * M_PI/(angleDiv/4));
+ 	rotAngle += (dt * M_PI/(angleDiv/2));
+
+	if(pOrb)
+	{
+		orbitAngle -= (dt * M_PI/(angleDiv/1.5));//set angle for rotation	
+		rotAngle += (dt * M_PI/(angleDiv/2));
+	}
+	if(pRotRev && pOrb)
+	{
+		orbitAngle -= (dt * M_PI/(angleDiv * 5.5));
+	}
+
+	else
+		orbitAngle -= (dt * M_PI/(angleDiv));//set angle for rotation
+	
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
@@ -324,7 +358,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  }
  else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/(angleDiv));//set angle for rotation
+	if(pRotRev && pOrb)
+		orbitAngle += (dt * M_PI/(angleDiv/2));//set angle for rotation
+	else
+		orbitAngle += (dt * M_PI/(angleDiv));//set angle for rotation
  	rotAngle -= (dt * M_PI/(angleDiv/4));
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -333,7 +370,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  }
  else if(isRotating && isOrbiting && oReversed && rReversed)//rotating, orbiting, both reversed
  {
-	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+	if(pRotRev)
+		orbitAngle -= (dt * M_PI/(angleDiv));//set angle for rotation
+	else
+		orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
  	rotAngle -= (dt * M_PI/angleDiv);
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -351,7 +391,12 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  }
  else if(!isRotating && isOrbiting && oReversed && !rReversed)//not rotating, orbiting,  orbit reversed
  {
-	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+	if(!pRotRev && pOrb)
+		orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
+	else if(!pOrb)
+		orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
+	else
+		orbitAngle -= (dt * M_PI/(angleDiv));
  	rotAngle += 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -379,15 +424,21 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  else if(isRotating && !isOrbiting && !oReversed && rReversed)//rotating, not orbiting, rotation reversed
  {
 	orbitAngle += 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/angleDiv);
+	if(pRotRev && pRot)
+ 		rotAngle -= (dt * M_PI/angleDiv);
+	else
+		rotAngle -= (dt * M_PI/(angleDiv/2));
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
 	model = glm::scale(model, glm::vec3(0.6, 0.6, 0.6));
  }
  else if(!isRotating && isOrbiting && oReversed && rReversed)//not rotating, orbiting, both reversed
- {
-	orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+ {	
+	if(pRotRev && pRot)
+		orbitAngle -= (dt * M_PI/angleDiv);//set angle for rotation
+	else
+		orbitAngle -= (dt * M_PI/(angleDiv/2));//set angle for rotation
  	rotAngle -= 0;
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
@@ -397,7 +448,10 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  else if(isRotating && !isOrbiting && oReversed && rReversed)//rotating, not orbiting, both reversed
  {
 	orbitAngle -= 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/angleDiv);
+	if(pRotRev)
+ 		rotAngle -= (dt * M_PI/(angleDiv));
+	else
+		rotAngle -= (dt * M_PI/(angleDiv/2));
  	model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
  	model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
  	model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));
