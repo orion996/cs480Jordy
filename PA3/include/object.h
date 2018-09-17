@@ -14,11 +14,13 @@ class Object
     void Render();
 
     glm::mat4 GetModel();
+    glm::mat4 GetMoonModel();
 
     Object *moons;
 
   private:
     glm::mat4 model;
+    glm::mat4 moonModel;
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
     GLuint VB;
@@ -26,6 +28,9 @@ class Object
 
     float rotAngle;
     float orbitAngle;
+
+    float mRotAngle;
+    float mOrbitAngle;
 
     bool oReversed = false;
     bool rReversed = false;
