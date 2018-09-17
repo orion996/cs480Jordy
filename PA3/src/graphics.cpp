@@ -112,7 +112,8 @@ void Graphics::Update(unsigned int dt, char cmd, bool newIn)
 {
   // Update the object
   planet->Update(dt, cmd, newIn);
-  planet -> moons -> UpdateMoon(dt, cmd, planet -> GetModel(), newIn);//update moons
+  glm::mat4 copy = planet -> GetModel();
+  planet -> moons -> UpdateMoon(dt, cmd, copy, newIn);//update moons
 }
 
 void Graphics::Render()
