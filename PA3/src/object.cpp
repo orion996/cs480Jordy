@@ -1,8 +1,7 @@
 #include "object.h"
-#include <SDL2/SDL.h>
 #include <iostream>
 
-bool pRotRev;
+#define DIV 2000 //divisor constant for setting orbit/rotation speeds
 
 Object::Object()
 {  
@@ -64,6 +63,7 @@ Object::Object()
     Indices[i] = Indices[i] - 1;
   }
 
+  //set all angles to 0
   rotAngle = 0.0f;
   orbitAngle = 0.0f;
   mRotAngle = 0.0f;
@@ -86,20 +86,11 @@ Object::~Object()
 
 
 
-void Object::Update(unsigned int dt, char cmd, bool newIn)
-{
-  
- //model = glm::mat4(1.0f);//render the cube
-
- //reference code
- /*orbitAngle += (dt * M_PI/2000);//set angle for rotation
- rotAngle = orbitAngle * 1.5f;
- model = glm::rotate(model, (orbitAngle), glm::vec3(0.0, 1.0, 0.0));
- model = glm::translate(model, glm::vec3(-7, 0.0f, 0.0f));
- model = glm::rotate(model, (rotAngle), glm::vec3(0.0, 1.0, 0.0));*/
+void Object::Update(unsigned int dt, char cmd)
+{ 
+ const int div = DIV;//const divisor for setting orbit/rotation speed
  
  //set booleans to determine state
-
  switch(cmd)
  {
 	case 'r':
@@ -134,45 +125,47 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
 			rReversed = true;
 		break;
 	}
+	case 's':
+	{
+		isRotating = isOrbiting = true;
+		rReversed = oReversed = false;
+		
+	}
 	default:
 	{
 		break;
 	}
  }
 
- pRotRev = rReversed;
-	
-
-
  if(isRotating && isOrbiting && !oReversed && !rReversed)//rotating, orbiting, not reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
- 	rotAngle += (dt * M_PI/2000);
+	orbitAngle += (dt * M_PI/div);//set angle for rotation
+ 	rotAngle += (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && !oReversed && !rReversed)//not rotating, orbiting, not reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
+	orbitAngle += (dt * M_PI/div);//set angle for rotation
  	rotAngle += 0;
  }
  else if(isRotating && !isOrbiting && !oReversed && !rReversed)//rotating,  not orbiting, not reversed
  {
 	orbitAngle += 0;//set angle for rotation
- 	rotAngle += (dt * M_PI/2000);
+ 	rotAngle += (dt * M_PI/div);
  }
  else if(isRotating && isOrbiting && oReversed && !rReversed)//rotating, orbiting, orbit reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
- 	rotAngle += (dt * M_PI/1000);
+	orbitAngle -= (dt * M_PI/div);//set angle for rotation
+ 	rotAngle += (dt * M_PI/(div/2));
  }
  else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
- 	rotAngle -= (dt * M_PI/1000);
+	orbitAngle += (dt * M_PI/div);//set angle for rotation
+ 	rotAngle -= (dt * M_PI/(div/2));
  }
  else if(isRotating && isOrbiting && oReversed && rReversed)//rotating, orbiting, both reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+	orbitAngle -= (dt * M_PI/div);//set angle for rotation
+ 	rotAngle -= (dt * M_PI/div);
  }
  else if(!isRotating && !isOrbiting)//stopped 
  {
@@ -181,33 +174,33 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
  }
  else if(!isRotating && isOrbiting && oReversed && !rReversed)//not rotating, orbiting,  orbit reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
+	orbitAngle -= (dt * M_PI/div);//set angle for rotation
  	rotAngle += 0;
  }
  else if(isRotating && !isOrbiting && oReversed && !rReversed)//rotating, not orbiting, orbit reversed
  {
 	orbitAngle -= 0;//set angle for rotation
- 	rotAngle += (dt * M_PI/2000);
+ 	rotAngle += (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && !oReversed && rReversed)//not rotating, orbiting, rotation reversed
  {
-	orbitAngle += (dt * M_PI/2000);//set angle for rotation
+	orbitAngle += (dt * M_PI/div);//set angle for rotation
  	rotAngle -= 0;
  }
  else if(isRotating && !isOrbiting && !oReversed && rReversed)//rotating, not orbiting, rotation reversed
  {
 	orbitAngle += 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+ 	rotAngle -= (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && oReversed && rReversed)//not rotating, orbiting, both reversed
  {
-	orbitAngle -= (dt * M_PI/2000);//set angle for rotation
+	orbitAngle -= (dt * M_PI/div);//set angle for rotation
  	rotAngle -= 0;
  }
  else if(isRotating && !isOrbiting && oReversed && rReversed)//rotating, not orbiting, both reversed
  {
 	orbitAngle -= 0;//set angle for rotation
- 	rotAngle -= (dt * M_PI/2000);
+ 	rotAngle -= (dt * M_PI/div);
  }
  model = (glm::rotate(glm::mat4(1.0f), (orbitAngle), glm::vec3(0.0, 1.0, 0.0))) *
  	(glm::translate(glm::mat4(1.0f), glm::vec3(-7, 0.0f, 0.0f))) *
@@ -218,8 +211,11 @@ void Object::Update(unsigned int dt, char cmd, bool newIn)
 }
 
 
-void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
+void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet)
 {
+ const int div = (int)(DIV/2);//const divisor for setting moon orbit/rotation speed
+
+ //set booleans
  switch(cmd)
  {
 	case '^':
@@ -254,6 +250,12 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
 			rReversed = true;
 		break;
 	}
+	case 's':
+	{
+		isRotating = isOrbiting = true;
+		rReversed = oReversed = false;
+		
+	}
 	default:
 	{
 		break;
@@ -264,33 +266,33 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
 
  if(isRotating && isOrbiting && !oReversed && !rReversed)//rotating, orbiting, not reversed
  {
-	mOrbitAngle += (dt * M_PI/1000);//set angle for rotation
- 	mRotAngle += (dt * M_PI/1000);
+	mOrbitAngle += (dt * M_PI/div);//set angle for rotation
+ 	mRotAngle += (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && !oReversed && !rReversed)//not rotating, orbiting, not reversed
  {
-	mOrbitAngle += (dt * M_PI/1000);//set angle for rotation
+	mOrbitAngle += (dt * M_PI/div);//set angle for rotation
  	mRotAngle += 0;
  }
  else if(isRotating && !isOrbiting && !oReversed && !rReversed)//rotating,  not orbiting, not reversed
  {
 	mOrbitAngle += 0;//set angle for rotation
- 	mRotAngle += (dt * M_PI/1000);
+ 	mRotAngle += (dt * M_PI/div);
  }
  else if(isRotating && isOrbiting && oReversed && !rReversed)//rotating, orbiting, orbit reversed
  {
-	mOrbitAngle -= (dt * M_PI/1000);//set angle for rotation
+	mOrbitAngle -= (dt * M_PI/div);//set angle for rotation
  	mRotAngle += (dt * M_PI/1000);
  }
  else if(isRotating && isOrbiting && !oReversed && rReversed)//rotating, orbiting, rotation reversed
  {
-	mOrbitAngle += (dt * M_PI/1000);//set angle for rotation
- 	mRotAngle -= (dt * M_PI/1000);
+	mOrbitAngle += (dt * M_PI/div);//set angle for rotation
+ 	mRotAngle -= (dt * M_PI/div);
  }
  else if(isRotating && isOrbiting && oReversed && rReversed)//rotating, orbiting, both reversed
  {
-	mOrbitAngle -= (dt * M_PI/1000);//set angle for rotation
- 	mRotAngle -= (dt * M_PI/1000);
+	mOrbitAngle -= (dt * M_PI/div);//set angle for rotation
+ 	mRotAngle -= (dt * M_PI/div);
  }
  else if(!isRotating && !isOrbiting)//stopped 
  {
@@ -299,40 +301,36 @@ void Object::UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn)
  }
  else if(!isRotating && isOrbiting && oReversed && !rReversed)//not rotating, orbiting,  orbit reversed
  {
-	mOrbitAngle -= (dt * M_PI/1000);//set angle for rotation
+	mOrbitAngle -= (dt * M_PI/div);//set angle for rotation
  	mRotAngle += 0;
  }
  else if(isRotating && !isOrbiting && oReversed && !rReversed)//rotating, not orbiting, orbit reversed
  {
 	mOrbitAngle -= 0;//set angle for rotation
- 	mRotAngle += (dt * M_PI/1000);
+ 	mRotAngle += (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && !oReversed && rReversed)//not rotating, orbiting, rotation reversed
  {
-	mOrbitAngle += (dt * M_PI/1000);//set angle for rotation
+	mOrbitAngle += (dt * M_PI/div);//set angle for rotation
  	mRotAngle -= 0;
  }
  else if(isRotating && !isOrbiting && !oReversed && rReversed)//rotating, not orbiting, rotation reversed
  {
 	mOrbitAngle += 0;//set angle for rotation
- 	mRotAngle -= (dt * M_PI/1000);
+ 	mRotAngle -= (dt * M_PI/div);
  }
  else if(!isRotating && isOrbiting && oReversed && rReversed)//not rotating, orbiting, both reversed
  {
-	mOrbitAngle -= (dt * M_PI/1000);//set angle for rotation
+	mOrbitAngle -= (dt * M_PI/div);//set angle for rotation
  	mRotAngle -= 0;
  }
  else if(isRotating && !isOrbiting && oReversed && rReversed)//rotating, not orbiting, both reversed
  {
 	mOrbitAngle -= 0;//set angle for rotation
- 	mRotAngle -= (dt * M_PI/1000);
+ 	mRotAngle -= (dt * M_PI/div);
  }
- 
- /*model = Planet * (glm::rotate(glm::mat4(1.0f), (mOrbitAngle), glm::vec3(0.0, 1.0, 0.0))) *
- 	(glm::translate(glm::mat4(1.0f), glm::vec3(-7, 0.0f, 0.0f))) *
- 	(glm::rotate(glm::mat4(1.0f), (mRotAngle), glm::vec3(0.0, 1.0, 0.0)));*/
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(sin(mOrbitAngle) * 5, 0, cos(mOrbitAngle) * 5));
-	model = model * Planet * glm::rotate(glm::mat4(1.0f), (mRotAngle*2), glm::vec3(0.0, 1.0, 0.0));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(sin(mOrbitAngle*2) * 5, 0, cos(mOrbitAngle*2) * 5));
+	model = model * Planet * glm::rotate(glm::mat4(1.0f), (mRotAngle*3), glm::vec3(0.0, 1.0, 0.0));
 	model = glm::scale(model, glm::vec3(.6, .6, .6));
 }
 

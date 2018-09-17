@@ -108,12 +108,11 @@ bool Graphics::Initialize(int width, int height)
   return true;
 }
 
-void Graphics::Update(unsigned int dt, char cmd, bool newIn)
+void Graphics::Update(unsigned int dt, char cmd)
 {
-  // Update the object
-  planet->Update(dt, cmd, newIn);
-  glm::mat4 copy = planet -> GetModel();
-  planet -> moons -> UpdateMoon(dt, cmd, copy, newIn);//update moons
+  // Update the objects
+  planet->Update(dt, cmd);
+  planet -> moons -> UpdateMoon(dt, cmd, planet -> GetModel());//update moons
 }
 
 void Graphics::Render()

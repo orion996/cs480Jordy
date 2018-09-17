@@ -9,8 +9,8 @@ class Object
   public:
     Object();
     ~Object();
-    void Update(unsigned int dt, char cmd, bool newIn);
-    void UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet, bool newIn);
+    void Update(unsigned int dt, char cmd);
+    void UpdateMoon(unsigned int dt, char cmd, glm::mat4 Planet);
     void Render();
 
     glm::mat4 GetModel();

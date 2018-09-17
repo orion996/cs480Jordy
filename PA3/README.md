@@ -65,5 +65,6 @@ Up Arrow - toggle moon rotation
 Down Arrow - toggle moon orbit
 Right Arrow - change moon orbit direction
 Left Arrow - change moon rotation direction
+S - Reset Planet and Moon to default rotation/orbit
 Esc - Exit Program
 ```

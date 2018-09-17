@@ -54,7 +54,6 @@ void Engine::Run()
 {
   m_running = true;
   char cmd = 'z';
-  bool newIn = false;
 
   while(m_running)
   {
@@ -74,12 +73,10 @@ void Engine::Run()
 	if(m_event.button.button == SDL_BUTTON_LEFT)
 	{
 		cmd = 'a';
-		newIn = true;
 	}
 	else if(m_event.button.button == SDL_BUTTON_RIGHT)
 	{
 		cmd = 'b';
-		newIn = true;
 	}
 	
       }
@@ -90,53 +87,48 @@ void Engine::Run()
        {
          m_running = false;
        }
-       if(m_event.key.keysym.sym == SDLK_r)//toggle rotation
+       if(m_event.key.keysym.sym == SDLK_r)//toggle planet rotation
 	{
 		cmd  = 'r';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_o)//toggle orbit
+	if(m_event.key.keysym.sym == SDLK_o)//toggle planet orbit
 	{
 		cmd = 'o';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_a)//toggle reverse orbit
+	if(m_event.key.keysym.sym == SDLK_a)//reverse planet orbit
 	{
 		cmd = 'a';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_b)//toggle reverse rotation
+	if(m_event.key.keysym.sym == SDLK_b)//reverse planet rotation
 	{
 		cmd = 'b';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_UP)
+	if(m_event.key.keysym.sym == SDLK_UP)//toggle moon rotation
 	{
 		cmd = '^';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_DOWN)
+	if(m_event.key.keysym.sym == SDLK_DOWN)//toggle moon orbit
 	{
 		cmd = 'v';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_RIGHT)
+	if(m_event.key.keysym.sym == SDLK_RIGHT)//reverse moon orbit
 	{
 		cmd = '>';
-		newIn = true;
 	}
-	if(m_event.key.keysym.sym == SDLK_LEFT)
+	if(m_event.key.keysym.sym == SDLK_LEFT)//reverse moon rotation
 	{
 		cmd = '<';
-		newIn = true;
+	}
+	if(m_event.key.keysym.sym == SDLK_s)//reset
+	{
+		cmd = 's';
 	}
       }
     }
 
     // Update and render the graphics
-    m_graphics->Update(m_DT, cmd, newIn);
+    m_graphics->Update(m_DT, cmd);
     cmd = 'x';
-    newIn = false;
     m_graphics->Render();
 
     // Swap to the Window
