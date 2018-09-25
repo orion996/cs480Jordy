@@ -6,14 +6,8 @@ Object::Object(string fileName)
 {  
  
   //run object loader
-    LoadOBJ(fileName);
+  LoadOBJ(fileName);
     
-  // The index works at a 0th index
-  for(unsigned int i = 0; i < Indices.size(); i++)
-  {
-    Indices[i] = Indices[i] - 1;
-  }
-
   angle = 0.0f;
 
   glGenBuffers(1, &VB);
@@ -33,7 +27,8 @@ Object::~Object()
 
 void Object::Update(unsigned int dt)
 {
- model = glm::mat4(1.0f);
+ angle += dt * M_PI/4000;
+ model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0f,1.0f,0.0f));
 }
 
 glm::mat4 Object::GetModel()
@@ -62,6 +57,7 @@ void Object::LoadOBJ(string fileName)
 {
       //open input file
   FILE *fin = fopen(fileName.c_str(), "r");
+  FILE *mat;
  
   if(fin == NULL)
   {
@@ -72,7 +68,7 @@ void Object::LoadOBJ(string fileName)
   //read in stuff
   while(1)
   {
-	char lineHead[300];
+	char* lineHead = new char;
 
 	int res = fscanf(fin, "%s", lineHead);
 	if(res == EOF)//break if end of file
@@ -84,9 +80,9 @@ void Object::LoadOBJ(string fileName)
 		glm::vec3 color;
 		fscanf(fin, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
                 
-                color.x = (float)(rand() % 2);
-                color.y = (float)(rand() % 2);
-                color.z = (float)(rand() % 1);
+		color.x = (float)(rand() % 3);
+		color.y = (float)(rand() % 3);
+		color.z = (float)(rand() % 3); 
 
 		Vertex *temp = new Vertex(vertex, color);
 		Vertices.push_back(*temp);//add to vertices
@@ -99,5 +95,12 @@ void Object::LoadOBJ(string fileName)
 		Indices.push_back(firstVal[1]);	
 		Indices.push_back(firstVal[2]);
 	}
+
+  }
+
+  // The index works at a 0th index
+  for(unsigned int i = 0; i < Indices.size(); i++)
+  {
+    Indices[i] = Indices[i] - 1;
   }
 }
