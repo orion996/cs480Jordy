@@ -5,6 +5,8 @@ Nick Jordy
 Alex Kastanek  
 Mari Trombley  
 
+Use Alex's Repository for Grading, Located At: https://github.com/AlexKastanek/CS480Kastanek
+
 # Dependencies, Building, and Running
 
 ## Dependency Instructions

@@ -1,11 +1,5 @@
 #include "object.h"
 
-//includes for Assimp
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-#include <assimp/color4.h>
-
 Object::Object()
 { 
   m_parent = NULL;
@@ -172,6 +166,7 @@ void Object::Render()
 
 bool Object::LoadObject(string in_filename, vector<Vertex>* out_vertices, vector<unsigned int>* out_indices)
 {
+  
   Assimp::Importer importer;
    
   const aiScene *scene = importer.ReadFile(in_filename.c_str(), aiProcess_Triangulate);//read in vertices, with triangulation
@@ -202,6 +197,8 @@ bool Object::LoadObject(string in_filename, vector<Vertex>* out_vertices, vector
           out_indices -> push_back(face -> mIndices[2]);
       }
   }
+  
+  return true;
 }
 
 bool Object::LoadMaterial(string in_filename, vector<Material>* out_materials)
