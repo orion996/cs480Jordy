@@ -9,6 +9,8 @@ Planet::Planet()
 
 Planet::Planet(float orbitRadius)
 {
+  cout << "in planet constructor" << endl;
+
 	m_orbitRadius = orbitRadius;
 	m_spinSpeed = 1;
 	m_orbitSpeed = 1;

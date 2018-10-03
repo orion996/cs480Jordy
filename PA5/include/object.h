@@ -1,6 +1,6 @@
 #ifndef OBJECT_H
 #define OBJECT_H
-
+#include "model.h"
 #include <vector>
 #include <string>
 #include <time.h>
@@ -26,12 +26,14 @@ class Object
     ~Object();
     virtual void Update(unsigned int dt);
     void Render();
-
+    
+    /*
     bool LoadObject(string in_filename, 
                     vector<Vertex>* out_vertices, 
                     vector<unsigned int>* out_indices);
     bool LoadMaterial(string in_filename,
                       vector<Material>* out_materials);
+    */
 
     glm::mat4 GetModel();
     //glm::mat4* GetModelReference();
@@ -53,14 +55,13 @@ class Object
     void SetOrbitDirection(unsigned int orbit);
 
   private:
-    std::vector<Vertex> Vertices;
-    std::vector<unsigned int> Indices;
-    GLuint VB;
-    GLuint IB;
+    //Model* m;
 
   protected:
     Object* m_parent;
     vector<Object*> m_children;
+
+    Model* m_renderData;
 
     glm::mat4 model;
     //glm::mat4* m_parent;

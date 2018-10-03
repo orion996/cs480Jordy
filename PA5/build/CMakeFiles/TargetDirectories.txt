@@ -1,4 +1,0 @@
-/home/orion996/CS480Kastanek/PA5/build/CMakeFiles/edit_cache.dir
-/home/orion996/CS480Kastanek/PA5/build/CMakeFiles/Tutorial_SUCCESSFUL.dir
-/home/orion996/CS480Kastanek/PA5/build/CMakeFiles/rebuild_cache.dir
-/home/orion996/CS480Kastanek/PA5/build/CMakeFiles/Tutorial.dir

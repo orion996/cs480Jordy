@@ -10,7 +10,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR: Invalid number of command line arguments. "
          << "Did you specify a single .obj file that is contained in "
-         << "the objects/OBJS directory?" << endl;
+         << "the assets directory?" << endl;
     return 1;
   }
 

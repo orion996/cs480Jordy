@@ -10,7 +10,13 @@ Use Alex's Repository for Grading, Located At: https://github.com/AlexKastanek/C
 # Dependencies, Building, and Running
 
 ## Dependency Instructions
-For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
+For both of the operating systems to run this project installation of these four programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), [SDL2](https://wiki.libsdl.org/Tutorials), and [assimp](http://www.assimp.org/index.php).  
+
+To install assimp, the linux terminal command is 
+```
+sudo apt-get update
+sudo apt-get install libassimp-dev
+``` 
 
 This project uses OpenGL 3.3. Some computers, such as virtual machines in the ECC, can not run this version. In in order to run OpenGL 2.7 follow the instructions at [Using OpenGL 2.7](https://github.com/HPC-Vis/computer-graphics/wiki/Using-OpenGL-2.7)
 
@@ -46,7 +52,7 @@ make
 ```
 
 ### Run Instructions
-After building the project, the executable can be ran. The program requires a single command-line argument that is the name of the .obj it needs to load. The program will not accept no command-line arguments or more than one command-line argument. The location of this .obj file must be placed in the PA4/objects/OBJS directory. Any .mtl files associated with this .obj file must be placed in the PA4/objects/MTLS directory. For example, if you want to load an object called "dragon.obj" and a material file associated with that file called "dragon.mtl", you would place the "dragon.obj" file in the PA4/objects/OBJS directory, and you would place the "dragon.mtl" file in the PA4/objects/MTLS directory. Then, you would run the program using the command "./Tutorial dragon.obj" in the build directory you created. 
+After building the project, the executable can be ran. The program requires a single command-line argument that is the name of the .obj it needs to load. The program will not accept no command-line arguments or more than one command-line argument. The location of this .obj file must be placed in the PA5/assets directory. Any .mtl files associated with this .obj file must also be placed in the PA5/assets directory. For example, if you want to load an object called "dragon.obj" and a material file associated with that file called "dragon.mtl", you would place the "dragon.obj" file in the PA5/assets directory, and you would also place the "dragon.mtl" file in the PA5/assets directory. Then, you would run the program using the command "./Tutorial dragon.obj" in the build directory you created. 
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.

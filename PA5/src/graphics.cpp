@@ -47,7 +47,7 @@ bool Graphics::Initialize(int width, int height)
   }
 
   // Create the objects
-  m_object = new Object("..//objects//OBJS//" + m_objectFilename);
+  m_object = new Object("..//assets//" + m_objectFilename);
   m_planet = new Planet(5.0, 5.0);
   m_moon = new Moon(30.0, 30.0);
 

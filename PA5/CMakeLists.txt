@@ -41,7 +41,7 @@ INCLUDE_DIRECTORIES(
 
 # Set sources
 FILE(GLOB_RECURSE SOURCES "src/*.cpp")
-ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCES})
+ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCES} src/model.cpp include/model.h)
 
 
 add_custom_target("${PROJECT_NAME}_SUCCESSFUL" ALL
