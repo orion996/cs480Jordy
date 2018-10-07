@@ -1,0 +1,4 @@
+/home/alex/Documents/computer-graphics/PA3/include/CMakeFiles/edit_cache.dir
+/home/alex/Documents/computer-graphics/PA3/include/CMakeFiles/Tutorial_SUCCESSFUL.dir
+/home/alex/Documents/computer-graphics/PA3/include/CMakeFiles/rebuild_cache.dir
+/home/alex/Documents/computer-graphics/PA3/include/CMakeFiles/Tutorial.dir
