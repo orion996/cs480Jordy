@@ -1,0 +1,23 @@
+Sun 80
+
+Mercury 0 0.8 .02 4.14 .38
+
+Venus 0 1.5 .01 1.6 .815
+
+Earth 1 2.6 1 1 1
+
+Mars 2 3.5 1 .53 .533
+
+Jupiter 4 13.8 2.7 .08 11
+
+Saturn 2 25.45 2.4 .03 9.5
+
+Uranus 27 51 1.4 .012 4
+
+Neptune 14 79.8 1.5 .006 3.9
+
+Pluto 5 104 .156 .004 .189
+
+FORMAT: Name moonsNum orbitRadius(per 35mil miles) rotSpeed(in days) orbitSpeed(in years) planetScale(scale to earth)
+Sun FORMAT: scale(to earth)
+
