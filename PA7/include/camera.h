@@ -26,7 +26,7 @@ class Camera
         float yaw );
 
     //handle keyboard input
-    void HandleKeyboardInput(string input);
+    void HandleKeyboardInput(string input, bool isPressed);
 
     glm::mat4 GetProjection();
     glm::mat4 GetView();
@@ -50,8 +50,15 @@ class Camera
     void SetVelocity(glm::vec3 velocity);
     void SetVelocity(float x, float y, float z);
     void SetFocusPoint(glm::vec3 focusPoint);
+
     void SetMoveSpeed(float moveSpeed);
+    void SetFocusRadius(float focusRadius);
+    void SetDefaultFocusRadius(float defaultFocusRadius);
+    void SetMinFocusRadius(float minFocusRadius);
+    void SetDefaultHeight(float defaultHeight);
+    void SetMaxHeight(float maxHeight);
     void SetMode(unsigned int mode);
+    void SetFocusChanged(bool focusChanged);
 
     //set individual x,y,z values
     void SetPositionX(float x);
@@ -75,12 +82,17 @@ class Camera
     float m_moveSpeed;
     float m_rotateSpeed;
     float m_focusRadius;
+    float m_defaultFocusRadius;
+    float m_minFocusRadius;
     float m_height;
+    float m_defaultHeight;
     float m_maxHeight;
     float m_pitch;
     float m_yaw;
 
     unsigned int m_mode;
+
+    bool m_focusChanged;
 };
 
 #endif /* CAMERA_H */

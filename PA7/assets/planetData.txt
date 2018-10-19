@@ -1,4 +1,8 @@
-Sun 80
+CameraSpeed 5 5
+
+Sun 100
+
+Star 30000
 
 Mercury 0 0.8 .02 4.14 .38
 
@@ -8,16 +12,19 @@ Earth 1 2.6 1 1 1
 
 Mars 2 3.5 1 .53 .533
 
-Jupiter 4 13.8 2.7 .08 11
+Jupiter 79 13.8 2.7 .08 11
 
-Saturn 2 25.45 2.4 .03 9.5
+Saturn 62 25.45 2.4 .03 9.5
 
 Uranus 27 51 1.4 .012 4
 
-Neptune 14 79.8 1.5 .006 3.9
+Neptune 13 79.8 1.5 .006 3.9
 
 Pluto 5 104 .156 .004 .189
 
 FORMAT: Name moonsNum orbitRadius(per 35mil miles) rotSpeed(in days) orbitSpeed(in years) planetScale(scale to earth)
+CameraSpeed FORMAT: first value is speed factor (larger means slower) for focus mode, second is speed for free and overview mode (larger means faster)
 Sun FORMAT: scale(to earth)
+Star FORMAT: scale(to earth)
 
+NOTE: These values cannot be less than 0. Only moonNums and orbitRadii can be equal to 0.

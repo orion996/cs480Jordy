@@ -18,6 +18,7 @@ public:
 	~Planet();
 
 	void Update(unsigned int dt);
+    void UpdateUran(unsigned int dt);
 
 	float GetOrbitRadius();
 	float GetSpinSpeed();
@@ -26,11 +27,14 @@ public:
 	void SetOrbitRadius(float orbitRadius);
 	void SetSpinSpeed(float spinSpeed);
 	void SetOrbitSpeed(float orbitSpeed);
+	void SetSpinAngle(float spinAngle);
 
 private:
 	float m_orbitRadius;
 	float m_spinSpeed;
 	float m_orbitSpeed;
+
+	float m_spinAngle;
 };
 
 #endif

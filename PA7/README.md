@@ -68,19 +68,40 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ## Keyboard/Mouse Input Guide
 ESC - must be pressed to close the window (or right-click on the task bar and select close).
 
-W- Zoom in on current focus point
+M - toggle camera mode (1. Focus Mode, 2. Free Mode, 3. Top-Down/Overview Mode)  
+**Default is Focus Mode  
 
-S- Zoom out from current focus point
+If in Focus Mode:  
+F - Change currently focused planet  
+W - Zoom in on currently focused planet  
+S - Zoom out from currently foucsed planet  
+UpArrow - tilt camera up  
+DownArrow - tilt camera down  
+  
+If in Free Mode:  
+W - Move forward  
+S - Move back  
+A - Move left  
+D - Move right  
+UpArrow - Look up (increase pitch)  
+DownArrow - Look down (decrease pitch)  
+LeftArrow - Look left (decrease yaw)  
+RightArrow - Look right (increase yaw)  
 
-UpArrow - tilt camera up
+If in Top-Down/Overview Mode:  
+W - Zoom in  
+S - Zoom out  
 
-DownArrow - tilt camera down
-
-F- focus on a planet (only visible in Normal Mode)
-
-M- toggle camera mode (1. Normal mode, 2. Free Mode, 3. Top-Down Mode)
-
+'+' - Increase simulation speed (no need to hold shift)
+'-' - Decrease simulation speed
 
 ## Extra Credit
-This program implements the extra credit portion of the assignment:
--This program uses a config file called "planetData.txt" located in the assets folder to determine scales for the planets
+This program implements the extra credit portion of the assignment:  
+-This program uses a config file called "planetData.txt" located in the assets folder to determine scales for the planets  
+-This program allows the user to increase/decrease the simulation speed  
+-This program has rings for all planets that have rings (Jupiter, Saturn, Uranus, and Neptune)  
+
+Other items that could be considered for extra credit:  
+-Advanced camera controls  
+-Correct amount of satellites for each planet  
+-Uranus and its rings are on their side  

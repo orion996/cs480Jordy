@@ -108,11 +108,13 @@ bool Model::LoadObject(string in_filename)
             cout << "ERROR: Mesh " << i << "is not using a material" << endl;
             return false;
         }
+        /*
         cout << "using material " 
              << mesh->mMaterialIndex 
              << ": " 
              << materialName.C_Str() 
              << endl;
+        */
 
         //get the texture file name contained in the mateial
         //return false if it cannot be found
@@ -128,7 +130,7 @@ bool Model::LoadObject(string in_filename)
                  << endl;
             return false;
         }
-        cout << "using texture: " << textureFileName.C_Str() << endl;
+        //cout << "using texture: " << textureFileName.C_Str() << endl;
 
         for (int j = 0; j < mesh->mNumVertices + 1; j++) 
         {

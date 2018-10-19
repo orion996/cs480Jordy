@@ -22,7 +22,10 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
 
-    void HandleCameraInput(string input);
+    void HandleCameraInput(string input, bool isPressed);
+
+    void SimulationSpeedUp();
+    void SimulationSpeedDown();
 
     bool IsPlanetPaused();
     unsigned int GetPlanetSpin();
@@ -30,6 +33,10 @@ class Graphics
     bool IsMoonPaused();
     unsigned int GetMoonSpin();
     unsigned int GetMoonOrbit();
+
+    unsigned int GetCameraMode();
+    int GetFocusedObject();
+    int GetSimulationSpeed();
 
     void SetPlanetPaused(bool paused);
     void SetPlanetSpin(unsigned int spin);
@@ -48,11 +55,12 @@ class Graphics
     void CreatePlanets(string configFile);
     void UpdatePlanets(unsigned int dt);
     void RenderPlanets();
-
+    Planet *m_planet[9];
+    Camera *m_camera;
   private:
     std::string ErrorString(GLenum error);
 
-    Camera *m_camera;
+
     Shader *m_shader;
 
     GLint m_projectionMatrix;
@@ -60,12 +68,26 @@ class Graphics
     GLint m_modelMatrix;
 
     //Object *m_object;
-    Planet *m_planet[9];
-    Moon *m_moon[100];
     Object *m_Sun;
+    Object *m_Star;
+
+    Moon *m_moon[500];
     Moon *m_SatRing;
-    
+    Moon *m_JupRing;
+    Moon *m_UranRing;
+    Moon *m_NepRing;
+    //Planet *m_focusedObject;
     int m_focusedObject;
+
+    int m_simulationSpeed;
+    float m_simulationSpeedFactor;
+    float m_cameraSpeed;
+    float m_cameraSpeedFactor;
+    float m_cameraDistanceOffset;
+    float m_cameraDistanceFactor;
+    float m_minCameraDistanceOffset;
+    float m_minCameraDistanceFactor;
+    float m_cameraHeightFactor;
     
     int moonIndex;
 

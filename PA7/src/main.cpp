@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 //   }
 
   // Start an engine
-  Engine *engine = new Engine("Jordy Kastanek and Trombley PA7", 800, 600);
+  Engine *engine = new Engine("Jordy Kastanek and Trombley PA7", 1600, 900);
 
 //   // Get the object file name and send to the engine
 //   string objectFilename = argv[1];

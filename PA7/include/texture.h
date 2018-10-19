@@ -4,10 +4,11 @@
 #ifndef PA6_TEXTURE_H
 #define PA6_TEXTURE_H
 
-#include <Magick++.h>
+
 #include "graphics_headers.h"
 #include <vector>
 #include <string>
+#include <Magick++.h>
 
 using namespace std;
 

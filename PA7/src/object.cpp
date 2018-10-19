@@ -38,6 +38,7 @@ Object::Object()
   m_paused = 0; //not paused
   m_spinDirection = 0; //spinning counter-clockwise
   m_orbitDirection = 0; //orbiting counter-clockwise
+  m_rotateFactor = 1;
 }
 
 Object::Object(string filename, float scaleV)
@@ -91,6 +92,7 @@ Object::Object(string filename, float scaleV)
   m_spinDirection = 0; //spinning counter-clockwise
   m_orbitDirection = 0; //orbiting counter-clockwise
   m_scaleVal = scaleV;
+  m_rotateFactor = 1;
 }
 
 Object::~Object()
@@ -102,7 +104,7 @@ Object::~Object()
 void Object::Update(unsigned int dt)
 {
 
-  angleRotate += dt * (M_PI/5000);
+  angleRotate += dt * (M_PI/5000) * m_rotateFactor;
   model = glm::rotate(glm::mat4(1.0), angleRotate, glm::vec3(0.0,1.0,0.0));
   
  model = glm::scale(
@@ -184,6 +186,16 @@ unsigned int Object::GetOrbitDirection()
   return m_orbitDirection;
 }
 
+float Object::GetScaleVal()
+{
+  return m_scaleVal;
+}
+
+float Object::GetRotateFactor()
+{
+  return m_rotateFactor;
+}
+
 void Object::SetParent(Object* parent)
 {
   m_parent = parent;
@@ -215,4 +227,9 @@ void Object::SetSpinDirection(unsigned int spinDirection)
 void Object::SetOrbitDirection(unsigned int orbitDirection)
 {
   m_orbitDirection = orbitDirection;
+}
+
+void Object::SetRotateFactor(float rotateFactor)
+{
+  m_rotateFactor = rotateFactor;
 }
