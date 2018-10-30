@@ -1,0 +1,4 @@
+/home/alex/Documents/CS480Kastanek/PA8/include/CMakeFiles/rebuild_cache.dir
+/home/alex/Documents/CS480Kastanek/PA8/include/CMakeFiles/edit_cache.dir
+/home/alex/Documents/CS480Kastanek/PA8/include/CMakeFiles/BulletTutorial.dir
+/home/alex/Documents/CS480Kastanek/PA8/include/CMakeFiles/BulletTutorial_SUCCESSFUL.dir
