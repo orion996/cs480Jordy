@@ -1,4 +1,0 @@
-/home/orion996/Documents/CS/cs480/CS480Kastanek/PA9/build/CMakeFiles/rebuild_cache.dir
-/home/orion996/Documents/CS/cs480/CS480Kastanek/PA9/build/CMakeFiles/edit_cache.dir
-/home/orion996/Documents/CS/cs480/CS480Kastanek/PA9/build/CMakeFiles/BulletTutorial_SUCCESSFUL.dir
-/home/orion996/Documents/CS/cs480/CS480Kastanek/PA9/build/CMakeFiles/BulletTutorial.dir

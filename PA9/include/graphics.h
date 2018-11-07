@@ -21,7 +21,10 @@ struct Light
   glm::vec4 ambient;
   glm::vec4 diffuse;
   glm::vec4 specular;
+  glm::vec3 direction;
+  float angle;
   float shininess;
+  float attenuation;
 };
 
 class Graphics
@@ -35,6 +38,7 @@ class Graphics
     void Render();
 
     void moveFlipper(char input);
+    void moveLight(char input);
 
     World *m_world;
     

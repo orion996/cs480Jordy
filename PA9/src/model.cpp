@@ -161,11 +161,13 @@ bool Model::LoadObject(string in_filename)
                 Norm = glm::vec3(0.0,0.0,0.0);
             
             //cout << endl;
-//             cout << "("
-//                  << Norm.x << ", "
-//                  << Norm.y << ", "
-//                  << Norm.z << ")"
-//                  << endl;
+            /*
+            cout << "("
+                 << Norm.x << ", "
+                 << Norm.y << ", "
+                 << Norm.z << ")"
+                 << endl;
+            */
                  
             //create the Vertex type to be pushed
             Vertex *temp = new Vertex(vertex, uv, Norm); 

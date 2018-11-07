@@ -7,7 +7,9 @@ layout (location = 2) in vec3 v_normal;
 out vec3 fN;
 out vec3 fE;
 out vec3 fL;
+out vec3 fP;
 out vec2 texture;
+//out float attenuation;
 
 uniform mat4 projectionMatrix;
 uniform mat4 modelMatrix;
@@ -26,7 +28,7 @@ void main()
     fL = lightPosition.xyz;
 
     if(lightPosition.w != 0.0){
-        fL = lightPosition.xyz - v.xyz;
+        fL = lightPosition.xyz - (modelMatrix * vec4(v_position, 1.0)).xyz;
     }
 
     texture = v_texture;
@@ -42,8 +44,12 @@ void main()
     fL = lightPosition.xyz;
     if(lightPosition.w != 0.0)
     {
-        fL = lightPosition.xyz - pos;
+        fL = lightPosition.xyz - (modelMatrix * vec4(v_position, 1.0)).xyz;
     }
+    fP = (modelMatrix * v).xyz;
+
+    //float distanceToLight = length(lightPosition.xyz - (modelMatrix * v).xyz);
+    //attenuation = 1.0 / (1.0 + attenuationProduct * pow(distanceToLight, 2));
 
     texture = v_texture;
 

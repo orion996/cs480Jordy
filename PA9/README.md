@@ -69,17 +69,15 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ## Keyboard/Mouse Input Guide
 ESC - must be pressed to close the window (or right-click on the task bar and select close).
 
-w - increase brightness
+q - increase brightness
 
-s - decrease brightness
+e - decrease brightness
 
 Lshift - flip left flipper
 
 Rshift - flip right flipper
 
 SpaceBar - Toggle Lighting Mode (default is Vertex Based)
-
-
 
 ## Extra Credit
 

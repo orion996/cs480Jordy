@@ -120,7 +120,8 @@ void Ball::Update(unsigned int dt)
   //assign value to transform based on rigid body's new world status
   //then update model with transform
   m_rigidBody->getMotionState()->getWorldTransform(transform);
-  
+
+  m_position = glm::vec3(transform.getOrigin().getX(), transform.getOrigin().getY(), transform.getOrigin().getZ());
   transform.getOpenGLMatrix(modelUpdate);
   model = glm::make_mat4(modelUpdate) * m_scaleMatrix;
 }

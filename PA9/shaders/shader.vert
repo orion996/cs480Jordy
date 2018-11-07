@@ -13,7 +13,10 @@ uniform mat4 modelMatrix;
 
 uniform vec4 ambientProduct, diffuseProduct, specularProduct;
 uniform vec4 lightPosition;
+uniform vec3 lightDirection;
+uniform float lightAngle;
 uniform float shininess;
+uniform float attenuationProduct;
 
 uniform sampler2D gSampler;
 
@@ -22,7 +25,7 @@ void main(void)
     vec4 v = vec4(v_position, 1.0);
     vec3 pos = ((viewMatrix * modelMatrix) * v).xyz;
 
-    vec3 L = normalize(lightPosition.xyz - pos);
+    vec3 L = normalize(lightPosition.xyz - (modelMatrix * vec4(v_position, 1.0)).xyz);
     vec3 E = normalize(-pos);
     vec3 H = normalize(L + E);
 
@@ -40,11 +43,26 @@ void main(void)
         specular = vec4(0.0, 0.0, 0.0, 1.0);
     }
 
+    //calculate attenuation
+    float distanceToLight = length(lightPosition.xyz - (modelMatrix * v).xyz);
+    float attenuation = 1.0 / (1.0 + attenuationProduct * pow(distanceToLight, 2));
+
+    //if object is outside the cone of influence, set attenuation to zero
+    vec3 direction = normalize(lightDirection);
+    float lightToSurfaceAngle = degrees(acos(dot(-L,direction)));
+    if (lightToSurfaceAngle > lightAngle)
+    {
+        attenuation = 0.0;
+    }
+
+    vec3 linearColor = (ambient + (attenuation * (diffuse + specular))).xyz;
+
+    vec3 gamma = vec3(1.0/2.2);
+
     gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v;
 
     texture = v_texture;
 
-    color = ambient + diffuse + specular;
-    color.a = 1.0;
+    color = vec4(pow(linearColor, gamma), 1.0);
 
 }

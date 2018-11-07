@@ -40,7 +40,7 @@ bool World::Initialize()
   m_dynamicsWorld->addRigidBody(m_board->m_rigidBody);
 
 
-  m_ball = new Ball("..//assets//Ball.obj", 3.0f, glm::vec3(-15.0f, 1.0f, 0.0f));
+  m_ball = new Ball("..//assets//Ball.obj", 3.0f, glm::vec3(-20.0f, 1.0f, 0.0f));
   m_ball->Initialize();  
   m_dynamicsWorld->addRigidBody(m_ball->m_rigidBody);
 
