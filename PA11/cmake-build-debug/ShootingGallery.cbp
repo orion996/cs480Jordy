@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ShootingGallery"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\CMakeModules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ShootingGallery_SUCCESSFUL">
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 ShootingGallery_SUCCESSFUL"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ShootingGallery">
+				<Option output="/home/mari/CS480Kastanek/PA11/cmake-build-debug/ShootingGallery" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DUNIX"/>
+					<Add directory="/home/mari/CS480Kastanek/PA11/include"/>
+					<Add directory="/usr/include/assimp"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/bullet"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 ShootingGallery"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ShootingGallery/fast">
+				<Option output="/home/mari/CS480Kastanek/PA11/cmake-build-debug/ShootingGallery" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mari/CS480Kastanek/PA11/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DUNIX"/>
+					<Add directory="/home/mari/CS480Kastanek/PA11/include"/>
+					<Add directory="/usr/include/assimp"/>
+					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/usr/include/bullet"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 ShootingGallery/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/mari/CS480Kastanek/PA11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/include/sound.h">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/bb.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/bullet.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/camera.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/can.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/cross.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/engine.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/graphics.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/gui.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/gun.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui_demo.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui_draw.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui_impl_opengl3.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui_impl_sdl.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/imgui_widgets.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/light.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/main.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/model.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/object.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/obstacle.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/physics.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/physics_object.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/shader.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/shadow.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/sound.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/target.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/texture.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/trigger_object.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/window.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/src/world.cpp">
+			<Option target="ShootingGallery"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindBullet.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindGLEW.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindGLM.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindImageMagick.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindPackageHandleStandardArgs.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindPackageMessage.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindSDL2.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/FindSDL2_MIXER.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/mari/CS480Kastanek/PA11/CMakeModules/Findassimp.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
